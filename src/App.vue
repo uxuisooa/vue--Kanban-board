@@ -1,5 +1,7 @@
 <template>
-  <div id="app">{{msg}}</div>
+  <div id="app">
+    {{msg}}
+  </div>
 </template>
 
 <script>
@@ -7,7 +9,7 @@ export default {
   name: "app",
   data() {
     return {
-      msg: "App.vue 화면입니다."
+      msg: "Welcome to Your Vue.js App"
     };
   }
 };
