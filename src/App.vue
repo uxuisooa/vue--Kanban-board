@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    {{msg}}
+    {{msg}} 
+    <!-- 헤더를 넣거나 -->
+    <router-view></router-view>
+    <!-- 푸터를 넣거나 -->
   </div>
 </template>
 
