@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueRouter from 'vue-router'
 
 const Login = { template : '<div>로그인 페이지</div>' }
+const NotFound = { template: '<div>로그인 페이지를 찾을 수 없습니다.</div>'}
 
 const routes = {
   '/': App,
@@ -13,8 +15,7 @@ new Vue({
   
   computed: {
     VueComponent() { 
-      return routes[window.location.pathname] ||
-        { template: '<div>로그인 페이지를 찾을 수 없습니다.</div>'}
+      return routes[window.location.pathname] || NotFound
     }
   },
 
