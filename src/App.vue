@@ -1,19 +1,20 @@
 <template>
-  <div id="app">
-    {{msg}} 
-    <!-- 헤더를 넣거나 -->
+  <div id="app">    
+    <Navbar/>
     <router-view></router-view>
-    <!-- 푸터를 넣거나 -->
   </div>
 </template>
 
 <script>
+import Navbar from './components/Navbar.vue'
+
 export default {
   name: "app",
+  components: { Navbar },
   data() {
     return {
-      msg: "App 컴포넌트 화면입니다."
-    };
+     
+    }
   }
 };
 </script>
