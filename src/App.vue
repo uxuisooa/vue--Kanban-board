@@ -9,7 +9,7 @@ export default {
   name: "app",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
+      msg: "App 컴포넌트 화면입니다."
     };
   }
 };
