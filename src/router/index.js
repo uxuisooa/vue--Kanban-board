@@ -8,17 +8,20 @@ import NotFound from '../components/NotFound.vue'
 
 Vue.use(VueRouter)
 
-// const Login = { template : '<div>로그인 페이지</div>' }
-// const NotFound = { template: '<div>로그인 페이지를 찾을 수 없습니다.</div>'}
+const requireAuth = (to, from, next) => { 
+  const isAuth = localStorage.getItem('token')
+  const loginPath = `/login?rPath=${encodeURIComponent(to.path)}`
+  isAuth ? next() : next(loginPath)
+}
 
 
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    { path: '/', component: Home },
+    { path: '/', component: Home, beforeEnter: requireAuth },
     { path: '/login', component: Login },
-    { path: '/b/:bid', component: Board, children: [
-        { path: 'c/:cid', component: Card } //중첩라우팅
+    { path: '/b/:bid', component: Board, beforeEnter: requireAuth, children: [
+        { path: 'c/:cid', component: Card, beforeEnter: requireAuth } //중첩라우팅
     ] }, //:bid 변수
     { path: '*', component: NotFound }
   ]
