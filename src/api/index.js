@@ -25,8 +25,8 @@ export const setAuthInHeader = token => {
 }
 
 export const board = {
-  fetch() {
-    return request('get', '/boards')
+  fetch(id) {
+    return id ? request('get', `/boards/${id}`) : request('get', '/boards')//id가 있는 경우에는 id를 연결해주고 없으면 boards로 연결
   },
   create(title) { 
     return request('post', '/boards', {title})
