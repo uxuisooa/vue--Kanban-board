@@ -1,57 +1,51 @@
 <template>
-    <div>
-        <div class="board-wrapper">
-            <div class="board">
-                <div class="board-header">
-                  <span class="board-title">{{board.title}}</span>
-                </div>
-                <!-- <pre>
-                  {{board}}
-                </pre> -->
-                <div class="list-section-wrapper">
-                  <div class="list-section">
-                    <div class="list-wrapper" v-for="list in board.lists" :key="list.pos">
-                      <List :data="list"/>
-                    </div>
-                  </div>
-                </div>
-            </div>
+  <div>
+    <div class="board-wrapper">
+      <div class="board">
+        <div class="board-header">
+          <span class="board-title">{{board.title}}</span>
         </div>
+        <div class="list-section-wrapper">
+          <div class="list-section">
+            <div class="list-wrapper" v-for="list in board.lists" :key="list.pos">
+                <List :data="list" />
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 import {mapState, mapActions} from 'vuex'
 import List from './List.vue'
-
 export default {
-    components: {
-      List
-    },
-    data() {
-        return {
-            bid: 0,  //기본값
-            loading: false
-        }
-    },
-    computed: {
-        ...mapState({
-            board : 'board'
-        })
-    },
-    created() {
-        this.fetchData()        
-    },
-    methods: {
-        ...mapActions([
-            'FETCH_BOARD'
-        ]),
-        fetchData() {
-            this.loading = true
-            this.FETCH_BOARD({id: this.$route.params.bid})
-                .then(() => this.loading = false)           
-        }
+  components: { List },
+  data() {
+    return {
+      bid: 0,
+      loading: false
     }
+  },
+  computed: {
+    ...mapState({
+      board: 'board'
+    })
+  },
+  created() {
+    this.fetchData()
+  },
+  methods: {
+    ...mapActions([
+      'FETCH_BOARD'
+    ]),
+    fetchData() {
+      this.loading = true
+      this.FETCH_BOARD({id: this.$route.params.bid})
+        .then(() => this.loading = false)
+    }
+  }
 }
 </script>
 
