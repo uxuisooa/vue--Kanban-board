@@ -23,18 +23,19 @@ export default {
   },
   mounted() {
     this.$refs.inputText.focus()
-    // this.setupClickOutside(this.$el)
+    this.setupClickOutside(this.$el)
   },
   methods: {
     onSubmit() {
       console.log('submit!')
     },
-    // setupClickOutside(el) {
-    //   document.querySelector('body').addEventListener('click', e => {
-    //     if (el.contains(e.target)) return 
-    //     this.$emit('close')
-    //   })
-    // }
+    setupClickOutside(el) {
+      document.querySelector('body').addEventListener('click', e => {
+        if (el.contains(e.target)) return 
+        if (e.target.className === "add-card-btn") return
+        this.$emit('close')
+      })
+    }
   }
 }
 </script>
